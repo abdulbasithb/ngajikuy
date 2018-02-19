@@ -64,7 +64,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
-      inject: true,
+      // Ensure all webpack <script> are injected into <head>
+      inject: 'head',
+      // Ensure chunks are evaluated in correct order
+      chunksSortMode: 'dependency',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
